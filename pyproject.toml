@@ -18,6 +18,8 @@ bcrypt = "4.0.1"
 pydantic-settings = "^2.1.0"
 python-dotenv = "^1.0.0"
 starlette-admin = "^0.12.2"
+sqlalchemy-file = "^0.6.0"
+pillow = "^10.2.0"
 
 
 [build-system]

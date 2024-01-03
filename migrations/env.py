@@ -9,6 +9,8 @@ from sqlmodel import SQLModel
 
 from app.db.session import DATABASE_URL
 from app.models.users import User
+from app.models.vocabulary import Category
+from app.models.vocabulary import Word
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

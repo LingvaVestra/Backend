@@ -30,7 +30,7 @@ class UserBase(SQLModel):
     username: Optional[str] = Field(nullable=True)
     first_name: Union[str, None] = None
     last_name: Union[str, None] = None
-    gender: Gender = Field(Column(Enum(Gender), default=Gender.MALE))
+    # gender: Gender = Field(Column(Enum(Gender), default=Gender.MALE))
     date_of_birth: Optional[date] = Field(nullable=True)
     #
     created_at: Optional[datetime] = Field(

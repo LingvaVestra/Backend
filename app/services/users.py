@@ -62,7 +62,7 @@ class CRUDUser(CRUDBase[User, SignUpSchema, UserUpdate]):
             first_name=obj_in.first_name,
             is_active=True,
             is_superuser=False,
-            gender=obj_in.gender,
+            # gender=obj_in.gender,
             date_of_birth=datetime.datetime.now().date(),
             avatar=None,
         )

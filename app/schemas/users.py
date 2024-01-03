@@ -15,7 +15,7 @@ class SignUpSchema(BaseModel):
     first_name: str
     password: str
     email: EmailStr
-    gender: Gender
+    # gender: Gender
 
 
 class TokenSchema(BaseModel):
@@ -48,7 +48,7 @@ class UserSchema(BaseModel):
     date_of_birth: datetime | None = None
     avatar: str | None = None
     # full_name: str | None = None
-    gender: Gender
+    # gender: Gender
 
 
 class UserInDB(UserSchema):
@@ -67,4 +67,4 @@ class UserUpdate(BaseModel):
     email: str
     first_name: str
     last_name: str
-    gender: str
+    # gender: str
