@@ -1,23 +1,6 @@
-import contextlib
-import os
 from typing import List, Optional
 
-from libcloud.storage.providers import get_driver
-from libcloud.storage.types import ContainerAlreadyExistsError, Provider
-from sqlalchemy_file.storage import StorageManager
 from sqlmodel import Field, Relationship, SQLModel
-
-os.makedirs("./upload_dir", 0o777, exist_ok=True)
-driver = get_driver(Provider.LOCAL)("./upload_dir")
-
-
-with contextlib.suppress(ContainerAlreadyExistsError):
-    driver.create_container(container_name="category")
-
-
-container = driver.get_container(container_name="category")
-
-StorageManager.add_storage("category", container)
 
 
 class CategoryWordLink(SQLModel, table=True):
@@ -43,9 +26,3 @@ class Word(SQLModel, table=True):
     audio: Optional[str] = Field(nullable=True, index=True)
     image: Optional[str] = Field(nullable=True, index=True)
     category: List[Category] = Relationship(back_populates="words", link_model=CategoryWordLink)
-
-
-# # Configure Storage
-# os.makedirs("./upload_dir/attachment", 0o777, exist_ok=True)
-# container = LocalStorageDriver("./upload_dir").get_container("attachment")
-# StorageManager.add_storage("default", container)
