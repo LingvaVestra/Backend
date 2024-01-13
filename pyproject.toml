@@ -20,8 +20,34 @@ python-dotenv = "^1.0.0"
 starlette-admin = "^0.12.2"
 sqlalchemy-file = "^0.6.0"
 pillow = "^10.2.0"
+fastapi-pagination = "^0.12.14"
 
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+
+[tool.isort]
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+line_length = 120
+combine_as_imports = true
+
+
+[tool.black]
+line-length = 120
+include = '\.pyi?$'
+exclude = '''
+(
+  /(
+    | venv
+    | _build
+    | buck-out
+    | build
+    | migrations
+  )/
+)
+'''

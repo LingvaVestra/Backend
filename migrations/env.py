@@ -7,10 +7,11 @@ from sqlalchemy.engine import Connection
 from sqlalchemy.ext.asyncio import async_engine_from_config
 from sqlmodel import SQLModel
 
-from app.db.session import DATABASE_URL
-from app.models.users import User
-from app.models.vocabulary import Category
-from app.models.vocabulary import Word
+from src.db.session import DATABASE_URL
+from src.models.users import User, UserDevice
+from src.models.vocabulary import Category
+from src.models.vocabulary import Word
+from src.models.memes import Meme, MemeHistory, MemeCategory
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

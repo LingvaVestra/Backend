@@ -1,24 +1,17 @@
-from fastapi import FastAPI
-from fastapi import Request
-from fastapi import status
+from fastapi import FastAPI, Request, status
 from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+from fastapi.staticfiles import StaticFiles
 
-from app.api.urls import router
-from app.db.session import init_db
-from app.internal.admin import admin
-
-# login_provider = UsernamePasswordProvider(
-#     admin_model=Admin,
-#     enable_captcha=True,
-#     login_logo_url="https://preview.tabler.io/static/logo.svg"
-# )
-
+from src.api.urls import router
+from src.db.session import init_db
+from src.internal.admin import admin
+from src.utils.generate_fixtures import generate_memes
 
 app = FastAPI()
-
+app.mount("/media", StaticFiles(directory="media"), name="media")
 # Create admin
 
 admin.mount_to(app)
@@ -35,14 +28,11 @@ app.include_router(router, prefix="/api")
 
 @app.on_event("startup")
 async def on_startup():
+    import os
+
+    base_dir = os.path.dirname(os.path.realpath(__file__))
     await init_db()
-    # redis = await aioredis.create_redis_pool("redis://localhost", encoding="utf8")
-    # admin_app.configure(
-    #     logo_url="https://preview.tabler.io/static/logo-white.svg",
-    #     template_folders=[os.path.join(BASE_DIR, "templates")],
-    #     providers=[login_provider],
-    #     redis=redis,
-    # )
+    await generate_memes(base_dir)
 
 
 @app.exception_handler(RequestValidationError)
