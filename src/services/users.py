@@ -7,7 +7,7 @@ from sqlmodel.ext.asyncio.session import AsyncSession
 
 from src.core.settings import ALGORITHM, JWT_REFRESH_SECRET_KEY, JWT_SECRET_KEY, oauth2_scheme
 from src.db.session import get_db
-from src.models.users import Gender, User, UserDevice
+from src.models.users import User, UserDevice
 from src.schemas.users import SignUpSchema, UserCreate, UserUpdate
 from src.services.crud_base import CRUDBase
 from src.utils.auth import get_password_hash, verify_password

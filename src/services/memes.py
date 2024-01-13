@@ -1,7 +1,7 @@
 import uuid as uuid_pkg
 from typing import Optional
 
-from sqlalchemy import func, not_, select
+from sqlalchemy import exists, func, not_, select
 from sqlalchemy.orm import selectinload
 from sqlmodel.ext.asyncio.session import AsyncSession
 
@@ -29,8 +29,13 @@ async def count_memes(db: AsyncSession) -> int:
 
 
 async def mark_meme_as_read(db: AsyncSession, meme_id: int, user_id: uuid_pkg.UUID):
-    db_obj = MemeHistory(user_id=user_id, meme_id=meme_id)
-    db.add(db_obj)
-    await db.commit()
-    await db.refresh(db_obj)
-    return db_obj
+    exists_qr = select(MemeHistory).where((MemeHistory.user_id == user_id) & (MemeHistory.meme_id == meme_id))
+    result = await db.execute(exists(exists_qr).select())
+    meme_exists = result.scalar()
+
+    if not meme_exists:
+        db_obj = MemeHistory(user_id=user_id, meme_id=meme_id)
+        db.add(db_obj)
+        await db.commit()
+        await db.refresh(db_obj)
+    return not meme_exists

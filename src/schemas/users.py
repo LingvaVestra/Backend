@@ -4,7 +4,7 @@ from typing import Optional
 
 from pydantic import BaseModel, EmailStr
 
-from src.models.users import Gender
+# from src.models.users import Gender
 
 # from fastapi_jwt_auth import AuthJWT
 

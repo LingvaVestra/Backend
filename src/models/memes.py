@@ -28,7 +28,7 @@ class Meme(SQLModel, table=True):
 
 
 class MemeHistory(SQLModel, table=True):
-    user_id: Optional[uuid_pkg.UUID] = Field(default=None, foreign_key="user.id", primary_key=True)
-    meme_id: Optional[int] = Field(default=None, foreign_key="meme.id", primary_key=True)
+    user_id: Optional[uuid_pkg.UUID] = Field(default=None, foreign_key="user.id", primary_key=True, index=True)
+    meme_id: Optional[int] = Field(default=None, foreign_key="meme.id", primary_key=True, index=True)
     created_at: Optional[datetime] = Field(sa_column=Column(DateTime(timezone=True), server_default=func.now()))
     updated_at: Optional[datetime] = Field(sa_column=Column(DateTime(), onupdate=func.now()))

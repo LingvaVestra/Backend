@@ -14,3 +14,7 @@ class MemeSchema(BaseModel):
     text_eng: str
     image: str
     memecategory: List[MemeCategorySchema]
+
+
+class MemeReadSchema(BaseModel):
+    meme_id: int

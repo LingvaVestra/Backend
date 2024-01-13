@@ -6,14 +6,13 @@ from typing import List, Optional, Union
 from sqlmodel import Boolean, Column, Date, DateTime, Enum, Field, Relationship, SQLModel, String, func
 from starlette_admin.contrib.sqla import ModelView
 
-
-class Gender(enum.Enum):
-    MALE = "male"
-    FEMALE = "female"
+# class Gender(enum.Enum):
+#     MALE = "male"
+#     FEMALE = "female"
 
 
 class UserBase(SQLModel):
-    email: str = Field(nullable=True)
+    email: str = Field(nullable=True, index=True)
     is_active: bool = True
     is_superuser: bool = False
     username: Optional[str] = Field(nullable=True)
