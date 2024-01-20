@@ -95,8 +95,8 @@ class CRUDUser(CRUDBase[User, SignUpSchema, UserUpdate]):
             update_data["hashed_password"] = hashed_password
         return await super().update(db, db_obj=db_obj, obj_in=update_data)
 
-    async def authenticate(self, db: AsyncSession, *, email: str, password: str) -> Optional[User]:
-        user = await self.get_by_email(db, email=email)
+    async def authenticate(self, db: AsyncSession, *, username: str, password: str) -> Optional[User]:
+        user = await self.get_by_username(db, username=username)
         if not user:
             return None
         if not verify_password(password, user.password):

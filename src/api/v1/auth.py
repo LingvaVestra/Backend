@@ -32,7 +32,7 @@ async def signup(payload: SignUpSchema = Body(), session: AsyncSession = Depends
 
 @router.post("/login", summary="User Login", response_model=TokenSchema)
 async def login(form_data: OAuth2PasswordRequestForm = Depends(), db: AsyncSession = Depends(get_db)):
-    user = await CRUDUser(User).authenticate(db, email=form_data.username, password=form_data.password)
+    user = await CRUDUser(User).authenticate(db, username=form_data.username, password=form_data.password)
     if not user:
         # return JSONResponse
         raise HTTPException(
