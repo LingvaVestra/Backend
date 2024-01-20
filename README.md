@@ -1,16 +1,24 @@
 # LingvaVestra
 
 ## Запуск проекта
-1. выполнить команду `cp .env_example .env`
+1. выполнить команду `cp .env_example .env` (В случае если обновились ключи)
 2. Собрать проект в докере
 ```bash
-docker-compose up -d
+docker compose up -d
+```
+3. Применить миграции
+```bash
+docker compose exec -t web bash -c "alembic upgrade head"
 ```
 2. Документация([SWAGGER](http://127.0.0.1:8180/docs#/))
 3. ([Админка](http://127.0.0.1:8180/admin/))
 
 ## Для разработчиков
 
+- Запуск локально
+```bash
+uvicorn main:app --reload
+```
 ### Alembic
 
 - Создать миграции

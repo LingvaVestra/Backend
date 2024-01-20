@@ -14,5 +14,6 @@ ACCESS_TOKEN_EXPIRE_MINUTES = int(os.environ.get("ACCESS_TOKEN_EXPIRE_MINUTES"))
 REFRESH_TOKEN_EXPIRE_MINUTES = int(os.environ.get("REFRESH_TOKEN_EXPIRE_MINUTES"))
 ALGORITHM = os.environ.get("ALGORITHM")
 REDIS_URL = os.environ.get("REDIS_URL")
-
+HOST_URL = os.environ.get("HOST_URL")
+API_KEY_GOOGLE = os.environ.get("API_KEY_GOOGLE")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="api/v1/auth/login")

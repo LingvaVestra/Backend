@@ -21,6 +21,7 @@ starlette-admin = "^0.12.2"
 sqlalchemy-file = "^0.6.0"
 pillow = "^10.2.0"
 fastapi-pagination = "^0.12.14"
+aiohttp = "^3.9.1"
 
 
 [build-system]

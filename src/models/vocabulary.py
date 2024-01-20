@@ -1,3 +1,4 @@
+import uuid as uuid_pkg
 from typing import List, Optional
 
 from sqlmodel import Field, Relationship, SQLModel
@@ -26,3 +27,10 @@ class Word(SQLModel, table=True):
     audio: Optional[str] = Field(nullable=True, index=True)
     image: Optional[str] = Field(nullable=True, index=True)
     category: List[Category] = Relationship(back_populates="words", link_model=CategoryWordLink)
+    users_vocabulary: List["Vocabulary"] = Relationship(back_populates="words")
+
+
+class Vocabulary(SQLModel, table=True):
+    user_id: Optional[uuid_pkg.UUID] = Field(default=None, foreign_key="user.id", primary_key=True, index=True)
+    word_id: Optional[int] = Field(default=None, foreign_key="word.id", primary_key=True, index=True)
+    words: List[Word] = Relationship(back_populates="users_vocabulary")

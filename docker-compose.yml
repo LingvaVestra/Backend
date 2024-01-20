@@ -1,5 +1,8 @@
 version: '3'
 
+volumes:
+  postgres_data:
+
 services:
 
   web:
@@ -27,5 +30,7 @@ services:
     ports:
       - "5455:5432"
     restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
     networks:
       - default

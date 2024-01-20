@@ -10,9 +10,21 @@ from pydantic import BaseModel, EmailStr
 
 class WordSchema(BaseModel):
     id: int
-    name: str
-    name_eng: str
-    transcription: str
+    text: str
+    text_eng: str
+    transcription: Optional[str]
+    audio: Optional[str]
+    image: Optional[str]
+
+
+class SearchWordSchema(WordSchema):
+    in_vocabulary: bool
+
+
+class CreateWordSchema(BaseModel):
+    text: str
+    text_eng: str
+    transcription: Optional[str]
     audio: Optional[str]
     image: Optional[str]
 
