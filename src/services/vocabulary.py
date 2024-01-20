@@ -142,11 +142,10 @@ async def translate_word(
             url,
         ) as resp:
             result = await resp.json()
-            print(result)
             return Word(
                 id=0,
-                text=search_text,
-                text_eng=result["data"]["translations"][0]["translatedText"],
+                text=result["data"]["translations"][0]["translatedText"],
+                text_eng=search_text,
                 transcription=None,
                 audio=None,
                 image=None,
